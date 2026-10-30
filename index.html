@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zelo · Onboarding técnico</title>
+    <meta
+      name="description"
+      content="Onboarding técnico interativo do Zelo: produto, arquitetura, stack, Design System ZDS v1.0, fluxos e pendências."
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="app-shell">
+      <!-- ===================== Menu lateral ===================== -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__header">
+          <img
+            class="brand-mark"
+            src="assets/logo_app_bar.png"
+            alt="Logo do Zelo"
+            width="44"
+            height="44"
+          />
+          <div>
+            <span class="sidebar__brand">Zelo</span>
+            <span class="sidebar__subtitle">Onboarding técnico</span>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav" aria-label="Seções do onboarding">
+          <ul>
+            <li><a class="nav-link" href="#inicio">Início</a></li>
+            <li><a class="nav-link" href="#o-que-e">O que é o Zelo</a></li>
+            <li><a class="nav-link" href="#stack">Stack tecnológica</a></li>
+            <li><a class="nav-link" href="#arquitetura">Arquitetura e código</a></li>
+            <li><a class="nav-link" href="#design-system">Design System</a></li>
+            <li><a class="nav-link" href="#fluxos">Funcionalidades e fluxos</a></li>
+            <li><a class="nav-link" href="#seguranca">Segurança</a></li>
+            <li><a class="nav-link" href="#pendencias">Estado e pendências</a></li>
+            <li><a class="nav-link" href="#setup">Setup rápido</a></li>
+          </ul>
+        </nav>
+
+        <div class="sidebar__footer">Design System ZDS v1.0</div>
+      </aside>
+
+      <!-- ===================== Conteúdo ===================== -->
+      <div class="content">
+        <header class="topbar">
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-controls="sidebar"
+            aria-expanded="false"
+          >
+            Menu
+          </button>
+          <span class="topbar__title">Zelo · Onboarding</span>
+        </header>
+
+        <main id="conteudo">
+          <!-- Hero -->
+          <section class="hero" id="inicio" aria-labelledby="inicio-titulo">
+            <span class="hero__eyebrow">Projeto Zelo</span>
+            <h1 class="hero__title" id="inicio-titulo">
+              Onboarding técnico do Zelo
+            </h1>
+            <p class="hero__subtitle">
+              Apresentação navegável do produto, da arquitetura, das tecnologias
+              e do estado atual do projeto — para quem está começando a
+              contribuir no Zelo.
+            </p>
+          </section>
+
+          <!-- Seção 1 -->
+          <section
+            class="section"
+            id="o-que-e"
+            aria-labelledby="o-que-e-titulo"
+          >
+            <span class="section__eyebrow">Seção 1</span>
+            <h2 class="section__title" id="o-que-e-titulo">O que é o Zelo</h2>
+            <p class="section__lead">
+              O Zelo é um aplicativo mobile pensado para apoiar o cuidado da
+              pessoa idosa sem reduzir esse cuidado a uma lista de tarefas.
+              Ele combina rotina, comunicação e rede de apoio para que o idoso
+              permaneça no centro da experiência, com mais autonomia, vínculo e
+              previsibilidade no dia a dia.
+            </p>
+
+            <p class="prose">
+              Na prática, o produto tenta resolver um problema bem comum:
+              informações importantes do cuidado costumam ficar espalhadas entre
+              conversas, memória, agenda do celular e acompanhamento informal da
+              família. O Zelo organiza esse cenário em uma experiência única,
+              conectando <strong>idoso</strong>, <strong>responsável</strong> e
+              <strong>rede de apoio</strong> em torno de uma rotina compartilhada.
+            </p>
+
+            <div class="grid grid--2">
+              <article class="card">
+                <h3 class="card__title">Problema que o produto ataca</h3>
+                <p>
+                  O cuidado da pessoa idosa raramente depende de uma única
+                  pessoa ou de um único lembrete. O desafio real é coordenar
+                  contatos, rotina, comunicação e acompanhamento sem perder
+                  clareza nem sobrecarregar quem cuida.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Quem participa da experiência</h3>
+                <p>
+                  O produto envolve pelo menos três papéis: a pessoa idosa, o
+                  responsável principal e os contatos da rede de apoio. O fluxo
+                  de cadastro já reflete isso ao prever o registro do idoso e
+                  de um responsável desde o começo.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Como o cuidado é organizado</h3>
+                <p>
+                  A rede de apoio funciona como a estrutura social do produto:
+                  é o conjunto de contatos que participa do cuidado. O idoso
+                  pode montar essa rede a partir da agenda do aparelho ou por
+                  inclusão manual, o que permite combinar praticidade e
+                  flexibilidade.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">O que sustenta a proposta no app</h3>
+                <p>
+                  Lembretes, notificações e assistência por voz entram como
+                  mecanismos para tornar a rotina mais acompanhável. O app
+                  trabalha com notificações locais no aparelho e também com
+                  notificações push via Firebase, para manter idoso e rede
+                  informados.
+                </p>
+              </article>
+            </div>
+
+            <div class="callout">
+              <h3 class="callout__title">
+                O Zelo não é só interface: ele depende de continuidade
+              </h3>
+              <p>
+                O aplicativo Flutter não guarda sozinho as informações de
+                cadastro, autenticação, rede de apoio e tokens de dispositivo.
+                Esses dados precisam continuar existindo independentemente do
+                aparelho, do login atual ou da tela aberta. Por isso o produto
+                depende de uma API REST em Spring Boot e de integrações como
+                Supabase, Firebase e WhatsApp. Essa camada técnica existe para
+                sustentar a continuidade do cuidado, e não apenas para “salvar
+                dados”.
+              </p>
+            </div>
+          </section>
+
+          <!-- Seção 2 -->
+          <section class="section" id="stack" aria-labelledby="stack-titulo">
+            <span class="section__eyebrow">Seção 2</span>
+            <h2 class="section__title" id="stack-titulo">
+              Stack tecnológica
+            </h2>
+            <p class="section__lead">
+              As tecnologias agrupadas por responsabilidade. Cada item pode ser
+              expandido para ver a função que exerce no projeto. Dependências de
+              frontend e de backend aparecem separadas.
+            </p>
+
+            <div class="grid grid--3">
+              <!-- Frontend -->
+              <article class="card">
+                <h3 class="card__title">
+                  Frontend <span class="card__count">11</span>
+                </h3>
+                <p class="card__intro">Aplicativo mobile em Flutter/Dart.</p>
+
+                <div class="card__list">
+                  <details class="tech">
+                    <summary>Flutter</summary>
+                    <p>
+                      Framework para o desenvolvimento do aplicativo mobile
+                      (Android e iOS).
+                    </p>
+                  </details>
+                  <details class="tech">
+                    <summary>Dart</summary>
+                    <p>Linguagem de programação usada no aplicativo.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Provider</summary>
+                    <p>
+                      Gerenciamento de estado — conecta as telas aos dados e aos
+                      casos de uso.
+                    </p>
+                  </details>
+                  <details class="tech">
+                    <summary>HTTP</summary>
+                    <p>Cliente HTTP para comunicação com a API do backend.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Firebase Core</summary>
+                    <p>Inicialização do Firebase dentro do aplicativo.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Firebase Messaging</summary>
+                    <p>Integração com as notificações push (FCM).</p>
+                  </details>
+                  <details class="tech">
+                    <summary>flutter_local_notifications</summary>
+                    <p>Notificações locais, agendadas no próprio aparelho.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>timezone</summary>
+                    <p>Operações relacionadas a horários e fusos.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>flutter_timezone</summary>
+                    <p>Obtém o fuso horário configurado no dispositivo.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>permission_handler</summary>
+                    <p>
+                      Solicitação e verificação de permissões (notificações,
+                      agenda e outras).
+                    </p>
+                  </details>
+                  <details class="tech">
+                    <summary>lucide_icons_flutter</summary>
+                    <p>Biblioteca de ícones utilizada na interface.</p>
+                  </details>
+                </div>
+              </article>
+
+              <!-- Backend -->
+              <article class="card">
+                <h3 class="card__title">
+                  Backend <span class="card__count">14</span>
+                </h3>
+                <p class="card__intro">
+                  API REST em Java/Spring Boot.
+                </p>
+
+                <div class="card__list">
+                  <details class="tech">
+                    <summary>Java 25</summary>
+                    <p>Linguagem e versão utilizadas no backend.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Spring Boot 4.1</summary>
+                    <p>Framework base da API REST.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Maven / Maven Wrapper</summary>
+                    <p>
+                      Build e gerenciamento de dependências, executado pelo
+                      <code>mvnw</code>.
+                    </p>
+                  </details>
+                  <details class="tech">
+                    <summary>Spring Web MVC</summary>
+                    <p>Camada HTTP: controllers e mapeamento das rotas.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Spring Data JPA + Hibernate</summary>
+                    <p>Persistência e mapeamento objeto-relacional.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Bean Validation</summary>
+                    <p>Validação dos dados de entrada nos DTOs.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Lombok</summary>
+                    <p>Redução de código repetitivo (getters, builders).</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Spring Security OAuth2 Resource Server</summary>
+                    <p>Protege as rotas e valida o JWT recebido.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>JWT</summary>
+                    <p>Token de acesso emitido no fluxo de autenticação.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>springdoc / OpenAPI + Swagger UI</summary>
+                    <p>Documentação interativa dos endpoints.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Spring AI + Google GenAI</summary>
+                    <p>
+                      Declarado no <code>pom.xml</code>; uso não evidenciado no
+                      código atual.
+                    </p>
+                  </details>
+                  <details class="tech">
+                    <summary>Firebase Admin SDK</summary>
+                    <p>
+                      Envio de notificações push a partir do backend.
+                    </p>
+                  </details>
+                  <details class="tech">
+                    <summary>PostgreSQL</summary>
+                    <p>Banco de dados relacional do projeto.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Docker</summary>
+                    <p>Ambiente do PostgreSQL executado em contêiner.</p>
+                  </details>
+                </div>
+              </article>
+
+              <!-- Serviços e integrações -->
+              <article class="card">
+                <h3 class="card__title">
+                  Serviços <span class="card__count">7</span>
+                </h3>
+                <p class="card__intro">
+                  Serviços externos e ferramentas de apoio.
+                </p>
+
+                <div class="card__list">
+                  <details class="tech">
+                    <summary>Supabase Auth</summary>
+                    <p>Autenticação externa usada no fluxo por WhatsApp.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>WAHA</summary>
+                    <p>
+                      Integração utilizada no envio de links pelo WhatsApp.
+                    </p>
+                  </details>
+                  <details class="tech">
+                    <summary>Firebase Cloud Messaging</summary>
+                    <p>Envio de notificações push.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>PostgreSQL</summary>
+                    <p>Persistência relacional dos dados.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Git e GitHub</summary>
+                    <p>Versionamento e colaboração no código.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Jira</summary>
+                    <p>Organização das tarefas do time.</p>
+                  </details>
+                  <details class="tech">
+                    <summary>Figma</summary>
+                    <p>Prototipação das interfaces.</p>
+                  </details>
+                </div>
+              </article>
+            </div>
+
+            <div class="callout">
+              <h3 class="callout__title">
+                Quem autentica e quem autoriza
+              </h3>
+              <p>
+                O <strong>Supabase Auth</strong> é o serviço de autenticação
+                externo usado no fluxo de login por WhatsApp. Já a
+                <strong>validação local do JWT</strong> e a
+                <strong>autorização das rotas</strong> são responsabilidades do
+                backend, por meio do Spring Security (OAuth2 Resource Server).
+              </p>
+            </div>
+
+            <p class="note">
+              <strong>Nota sobre dependências.</strong> O
+              <code>spring-ai-google-genai</code> está declarado no
+              <code>pom.xml</code>, mas não foi identificado uso no fluxo
+              principal do aplicativo. Ele é listado por estar presente no
+              projeto, não como parte confirmada de uma funcionalidade.
+            </p>
+          </section>
+
+
+          <!-- Seção 3 -->
+          <section
+            class="section"
+            id="arquitetura"
+            aria-labelledby="arquitetura-titulo"
+          >
+            <span class="section__eyebrow">Seção 3</span>
+            <h2 class="section__title" id="arquitetura-titulo">
+              Arquitetura e organização do código
+            </h2>
+            <p class="section__lead">
+              Como o aplicativo e o backend se relacionam, e como o código está
+              organizado em cada um dos lados.
+            </p>
+
+            <div class="arch">
+              <!-- Fluxo principal -->
+              <div class="arch__panel">
+                <h3 class="arch__heading">Do app ao banco</h3>
+
+                <ol class="arch__flow">
+                  <li class="arch-node arch-node--start">
+                    <span class="arch-node__name">Flutter + Dart</span>
+                    <span class="arch-node__desc">aplicativo mobile</span>
+                  </li>
+                  <li class="arch__arrow" aria-hidden="true"></li>
+                  <li class="arch-pill">HTTP / JSON</li>
+                  <li class="arch__arrow" aria-hidden="true"></li>
+                  <li class="arch-node">
+                    <span class="arch-node__name">API REST — Spring Boot</span>
+                    <span class="arch-node__desc">ponto de entrada</span>
+                  </li>
+                  <li class="arch__arrow" aria-hidden="true"></li>
+                  <li class="arch-node">
+                    <span class="arch-node__name">Controllers</span>
+                    <span class="arch-node__desc">recebem a requisição e validam o DTO</span>
+                  </li>
+                  <li class="arch__arrow" aria-hidden="true"></li>
+                  <li class="arch-node">
+                    <span class="arch-node__name">Services</span>
+                    <span class="arch-node__desc">regras de negócio</span>
+                  </li>
+                  <li class="arch__arrow" aria-hidden="true"></li>
+                  <li class="arch-node">
+                    <span class="arch-node__name">Repositories / JPA</span>
+                    <span class="arch-node__desc">acesso aos dados</span>
+                  </li>
+                  <li class="arch__arrow" aria-hidden="true"></li>
+                  <li class="arch-node arch-node--db">
+                    <span class="arch-node__name">PostgreSQL</span>
+                    <span class="arch-node__desc">persistência relacional</span>
+                  </li>
+                </ol>
+              </div>
+
+              <!-- Integrações externas -->
+              <div class="arch__panel">
+                <h3 class="arch__heading">Integrações externas</h3>
+                <p class="arch__note">
+                  Cada integração se conecta em um ponto diferente do fluxo —
+                  não passam todas pelo mesmo caminho.
+                </p>
+
+                <ul class="integration">
+                  <li class="integration__item">
+                    <span class="integration__name">Supabase Auth</span>
+                    <span class="integration__route"
+                      >Backend → Supabase (autenticação)</span
+                    >
+                  </li>
+                  <li class="integration__item">
+                    <span class="integration__name">WAHA</span>
+                    <span class="integration__route"
+                      >Backend ↔ WhatsApp (webhook e envio de link)</span
+                    >
+                  </li>
+                  <li class="integration__item">
+                    <span class="integration__name">Firebase Admin SDK</span>
+                    <span class="integration__route"
+                      >Backend → Firebase (envio de push)</span
+                    >
+                  </li>
+                  <li class="integration__item">
+                    <span class="integration__name">Firebase Cloud Messaging</span>
+                    <span class="integration__route"
+                      >Firebase → App (recebimento de push)</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="prose">
+              Os <strong>Controllers</strong> recebem a requisição HTTP, validam
+              o DTO de entrada e delegam ao <strong>Service</strong>, que
+              concentra as regras de negócio. O acesso ao banco acontece pelos
+              <strong>Repositories</strong> (Spring Data JPA). As
+              <strong>entidades</strong> são o que é persistido no PostgreSQL;
+              os <strong>DTOs</strong> e os <strong>mappers</strong> fazem a
+              conversão entre o mundo HTTP e o mundo persistente, conforme a
+              implementação.
+            </p>
+
+            <div class="grid grid--2">
+              <article class="card">
+                <h3 class="card__title">Frontend (Flutter)</h3>
+                <ul class="tree">
+                  <li class="tree__item">
+                    <span class="tree__path">lib/app/</span>
+                    <span class="tree__desc">Configuração da aplicação.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/config/</span>
+                    <span class="tree__desc">Configurações, como a URL da API.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/domain/models/</span>
+                    <span class="tree__desc">Modelos de domínio.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/domain/use_cases/</span>
+                    <span class="tree__desc">Casos de uso.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/data/repositories/</span>
+                    <span class="tree__desc">Repositórios de dados.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/data/services/</span>
+                    <span class="tree__desc">Serviços e integrações.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/providers/</span>
+                    <span class="tree__desc">Gerenciamento de estado.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/ui/</span>
+                    <span class="tree__desc"
+                      >Telas, componentes e Design System.</span
+                    >
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">lib/main.dart</span>
+                    <span class="tree__desc">Inicialização da aplicação.</span>
+                  </li>
+                </ul>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Backend (Spring Boot)</h3>
+                <ul class="tree">
+                  <li class="tree__item">
+                    <span class="tree__path">config</span>
+                    <span class="tree__desc">Configurações e integrações.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">controller</span>
+                    <span class="tree__desc"
+                      >Endpoints e DTOs de entrada e saída.</span
+                    >
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">entity</span>
+                    <span class="tree__desc">Entidades persistidas.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">exception</span>
+                    <span class="tree__desc">Tratamento de exceções.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">gateway</span>
+                    <span class="tree__desc"
+                      >Interfaces para integrações externas.</span
+                    >
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">mapper</span>
+                    <span class="tree__desc">Conversão entre objetos.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">repository</span>
+                    <span class="tree__desc">Acesso aos dados.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">security</span>
+                    <span class="tree__desc">Autenticação e segurança.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">service</span>
+                    <span class="tree__desc">Regras de negócio.</span>
+                  </li>
+                  <li class="tree__item">
+                    <span class="tree__path">utils</span>
+                    <span class="tree__desc">Utilitários.</span>
+                  </li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="callout">
+              <h3 class="callout__title">
+                Contrato de resposta — ApiResponseDTO
+              </h3>
+              <p>
+                As respostas da API seguem um envelope comum, com os campos
+                <code>success</code>, <code>message</code> e <code>data</code>.
+                O campo <code>data</code> é omitido quando não há conteúdo.
+              </p>
+              <pre class="code-block"><code>{
+  "success": true,
+  "message": "Token do dispositivo salvo com sucesso.",
+  "data": null
+}</code></pre>
+            </div>
+          </section>
+
+
+          <!-- Seção 4 -->
+          <section
+            class="section"
+            id="design-system"
+            aria-labelledby="design-system-titulo"
+          >
+            <span class="section__eyebrow">Seção 4</span>
+            <h2 class="section__title" id="design-system-titulo">
+              Design System ZDS v1.0
+            </h2>
+            <p class="section__lead">
+              O Zelo tem um Design System próprio, o ZDS v1.0. Ele define cores,
+              tipografia, espaçamento, movimento e componentes para manter a
+              consistência visual, permitir a reutilização e concentrar as
+              decisões de acessibilidade em um só lugar.
+            </p>
+
+            <!-- Identidade visual -->
+            <h3 class="card__title subheading">Identidade visual</h3>
+            <div class="swatches">
+              <div class="swatch">
+                <div
+                  class="swatch__color"
+                  style="background-color: var(--zelo-primary)"
+                  aria-hidden="true"
+                ></div>
+                <div class="swatch__meta">
+                  <span class="swatch__name">Verde Zelo</span>
+                  <span class="swatch__hex">#0F4C3A</span>
+                  <span class="swatch__role"
+                    >Cor primária — ações e marca.</span
+                  >
+                </div>
+              </div>
+
+              <div class="swatch">
+                <div
+                  class="swatch__color"
+                  style="background-color: var(--zelo-secondary)"
+                  aria-hidden="true"
+                ></div>
+                <div class="swatch__meta">
+                  <span class="swatch__name">Terracota</span>
+                  <span class="swatch__hex">#E27355</span>
+                  <span class="swatch__role"
+                    >Acento. Não usar como texto nem ícone sobre fundo claro
+                    (2.92:1).</span
+                  >
+                </div>
+              </div>
+
+              <div class="swatch">
+                <div
+                  class="swatch__color"
+                  style="background-color: var(--zelo-background)"
+                  aria-hidden="true"
+                ></div>
+                <div class="swatch__meta">
+                  <span class="swatch__name">Creme Acolher</span>
+                  <span class="swatch__hex">#FDF8F2</span>
+                  <span class="swatch__role">Cor de fundo das telas.</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="note">
+              O app usa <strong>tema claro</strong> e
+              <strong>Material 3</strong>. A tipografia é a
+              <strong>Plus Jakarta Sans</strong>, incluída nos assets do
+              projeto — por isso funciona offline, sem depender de fonte
+              externa.
+            </p>
+
+            <!-- Tokens -->
+            <h3 class="card__title subheading">Tokens</h3>
+            <p class="prose">
+              Os tokens são os valores visuais do sistema, definidos uma única
+              vez e reaproveitados pelos componentes.
+            </p>
+
+            <div class="token-list">
+              <div class="token-item">
+                <span class="token-item__title">Cores</span>
+                <p class="token-item__desc">
+                  Paleta da marca e neutros.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Cores semânticas</span>
+                <p class="token-item__desc">
+                  Papéis de cor: sucesso, alerta e erro.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Tipografia</span>
+                <p class="token-item__desc">
+                  Família, pesos e escala de texto.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Espaçamentos</span>
+                <p class="token-item__desc">
+                  Escala com base em 4, de <code>xs</code> a <code>giant</code>.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Bordas e raios</span>
+                <p class="token-item__desc">
+                  Escala discreta de raios, de <code>sm</code> a
+                  <code>full</code>.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Elevação</span>
+                <p class="token-item__desc">
+                  Sombras em duas camadas (<code>raised</code> e
+                  <code>overlay</code>).
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Alvos de toque</span>
+                <p class="token-item__desc">
+                  Tamanho mínimo e tamanho de ação das áreas clicáveis.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Ícones</span>
+                <p class="token-item__desc">
+                  Tamanhos e rótulos semânticos em português.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Assets</span>
+                <p class="token-item__desc">
+                  Caminhos de arquivos, como a logo do topo.
+                </p>
+              </div>
+              <div class="token-item">
+                <span class="token-item__title">Movimento</span>
+                <p class="token-item__desc">
+                  Durações e curvas, respeitando a preferência por reduzir
+                  animações.
+                </p>
+              </div>
+            </div>
+
+            <!-- Componentes -->
+            <h3 class="card__title subheading">Componentes</h3>
+            <p class="prose">
+              O ZDS reúne componentes reutilizáveis, para que o mesmo botão,
+              campo ou estado vazio se comporte da mesma forma em todas as
+              telas. São 11 componentes genéricos:
+            </p>
+
+            <div class="component-list">
+              <div class="component">
+                <span class="component__name">ZeloButton</span>
+                <p class="component__desc">Ações e chamadas principais.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloInput</span>
+                <p class="component__desc">Campos de texto.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloDropdown</span>
+                <p class="component__desc">Seleção de uma opção.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloCard</span>
+                <p class="component__desc">Agrupamento de conteúdo.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloAppBar</span>
+                <p class="component__desc">Barra superior das telas.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloBottomNav</span>
+                <p class="component__desc">Navegação inferior.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloAvatar</span>
+                <p class="component__desc">Representação de uma pessoa.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloStatusTag</span>
+                <p class="component__desc">Rótulo de status.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloBanner</span>
+                <p class="component__desc">Mensagem informativa.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloEmptyState</span>
+                <p class="component__desc">Estado sem conteúdo.</p>
+              </div>
+              <div class="component">
+                <span class="component__name">ZeloErrorState</span>
+                <p class="component__desc">
+                  Estado de erro, com ação de tentar de novo.
+                </p>
+              </div>
+            </div>
+
+            <p class="note">
+              Os 11 itens acima são os componentes <strong>genéricos</strong> do
+              Design System. Componentes específicos de uma funcionalidade —
+              como uma tela ou um card próprio — ficam junto da funcionalidade
+              em <code>lib/ui/</code>, e não dentro do Design System.
+            </p>
+
+            <!-- Regras -->
+            <h3 class="card__title subheading">Regras de uso</h3>
+            <ul class="rules">
+              <li>
+                Usar o tema e as cores semânticas; evitar cores e estilos
+                literais no código.
+              </li>
+              <li>
+                Reutilizar componentes do Design System em vez de recriar
+                equivalentes.
+              </li>
+              <li>
+                Manter a consistência tipográfica — família, pesos e escala.
+              </li>
+              <li>Respeitar os alvos de toque mínimos definidos nos tokens.</li>
+              <li>Prever a ampliação de texto sem quebrar o layout.</li>
+              <li>
+                Respeitar a preferência do sistema por reduzir animações.
+              </li>
+            </ul>
+
+            <!-- Acessibilidade -->
+            <div class="callout">
+              <h3 class="callout__title">Acessibilidade</h3>
+              <p>
+                O ZDS adota a <strong>WCAG 2.2</strong> como referência, com
+                contraste de <strong>7:1</strong> para texto (nível
+                <strong>AAA</strong>) e alvos de toque de pelo menos
+                <strong>48dp</strong>. São requisitos adotados no projeto — e
+                não uma garantia de que toda tela já esteja em conformidade.
+              </p>
+            </div>
+
+            <p class="note">
+              <span class="badge badge--unknown">Não verificado</span>
+              <strong> Situação dos testes.</strong> A documentação de origem
+              cita cerca de <strong>132 testes de contrato</strong> dos
+              componentes e <strong>13 testes de cadastro</strong>. No
+              repositório atual existe apenas <code>test/widget_test.dart</code>,
+              então esses números não puderam ser confirmados. Esse único teste
+              espera o texto <code>"Olá"</code>, enquanto a tela inicial
+              renderiza <code>"Zelo App"</code> — ou seja, ele está
+              desatualizado.
+            </p>
+          </section>
+
+
+          <!-- Seção 5 -->
+          <section class="section" id="fluxos" aria-labelledby="fluxos-titulo">
+            <span class="section__eyebrow">Seção 5</span>
+            <h2 class="section__title" id="fluxos-titulo">
+              Funcionalidades e fluxos
+            </h2>
+            <p class="section__lead">
+              O que já funciona, o que está em andamento e o que ainda não foi
+              construído. Cada fluxo traz a situação do backend e do aplicativo
+              separadamente, porque os dois lados avançam em ritmos diferentes.
+            </p>
+
+            <ul class="legend">
+              <li>
+                <span class="badge badge--ok">Implementado</span>
+                Funciona no app e no backend.
+              </li>
+              <li>
+                <span class="badge badge--partial">Parcial</span>
+                Existe de um lado, ou falta integração entre os dois.
+              </li>
+              <li>
+                <span class="badge badge--pending">Pendente</span>
+                Ainda não construído, ou apenas protótipo.
+              </li>
+              <li>
+                <span class="badge badge--unknown">Não verificado</span>
+                Não foi possível confirmar no repositório.
+              </li>
+            </ul>
+
+            <div class="flow-list">
+              <!-- Cadastro -->
+              <article class="card">
+                <div class="flow__head">
+                  <h3 class="flow__title">Cadastro e confirmação de conta</h3>
+                  <span class="badge badge--partial">Parcial</span>
+                </div>
+                <p class="flow__desc">
+                  Registro do responsável e do idoso, com confirmação do número
+                  de WhatsApp.
+                </p>
+                <dl class="flow__facts">
+                  <div class="flow__fact">
+                    <dt>Backend</dt>
+                    <dd>
+                      O endpoint <code>POST /api/usuarios/confirmar</code> está
+                      implementado (tarefa SCRUM-68).
+                    </dd>
+                  </div>
+                  <div class="flow__fact">
+                    <dt>App</dt>
+                    <dd>
+                      As telas de cadastro estão prontas. A confirmação por
+                      WhatsApp ainda depende de integração — no código há um
+                      comentário aguardando o backend.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+
+              <!-- Rede de apoio -->
+              <article class="card">
+                <div class="flow__head">
+                  <h3 class="flow__title">Rede de apoio</h3>
+                  <span class="badge badge--partial">Parcial</span>
+                </div>
+                <p class="flow__desc">
+                  Os contatos que participam do cuidado, com vínculo e origem
+                  (agenda do aparelho ou digitados manualmente).
+                </p>
+                <dl class="flow__facts">
+                  <div class="flow__fact">
+                    <dt>Backend</dt>
+                    <dd>
+                      CRUD completo em <code>/api/rede-apoio</code>: criar,
+                      listar, buscar por id, listar por idoso, atualizar e
+                      excluir.
+                    </dd>
+                  </div>
+                  <div class="flow__fact">
+                    <dt>App</dt>
+                    <dd>
+                      Telas, provider e casos de uso estão prontos. Há dois
+                      pontos pendentes: o app injeta um repositório
+                      <strong>fake</strong> (não chama a API) e o caminho usado
+                      no app (<code>/api/v1/rede-apoio</code>) é diferente do
+                      exposto pelo backend (<code>/api/rede-apoio</code>).
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+
+              <!-- Periodicidade e horários -->
+              <article class="card">
+                <div class="flow__head">
+                  <h3 class="flow__title">Periodicidade e horários</h3>
+                  <span class="badge badge--partial">Parcial</span>
+                </div>
+                <p class="flow__desc">
+                  Configuração de lembretes recorrentes e dos horários em que
+                  eles devem acontecer.
+                </p>
+                <dl class="flow__facts">
+                  <div class="flow__fact">
+                    <dt>Backend</dt>
+                    <dd>
+                      Os endpoints <code>/api/periodicidade</code> e
+                      <code>/api/horarios</code> estão implementados.
+                    </dd>
+                  </div>
+                  <div class="flow__fact">
+                    <dt>App</dt>
+                    <dd>
+                      Não foi localizada nenhuma referência a periodicidade ou
+                      horários no aplicativo.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+
+              <!-- Autenticação por WhatsApp -->
+              <article class="card">
+                <div class="flow__head">
+                  <h3 class="flow__title">Autenticação por WhatsApp</h3>
+                  <span class="badge badge--partial">Parcial</span>
+                </div>
+                <p class="flow__desc">
+                  Login por código enviado no WhatsApp, com emissão e validação
+                  de token de acesso.
+                </p>
+                <dl class="flow__facts">
+                  <div class="flow__fact">
+                    <dt>Backend</dt>
+                    <dd>
+                      Os fluxos em <code>/api/autenticacao</code> (criar,
+                      reenviar e confirmar), o <code>/api/autenticacao/login</code>,
+                      o webhook do WAHA e o <code>/api/auth/me</code> estão
+                      implementados.
+                    </dd>
+                  </div>
+                  <div class="flow__fact">
+                    <dt>App</dt>
+                    <dd>
+                      Nenhuma tela ou serviço de login foi localizado no
+                      aplicativo.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+
+              <!-- Notificações -->
+              <article class="card">
+                <div class="flow__head">
+                  <h3 class="flow__title">Notificações</h3>
+                  <span class="badge badge--partial">Parcial</span>
+                </div>
+                <p class="flow__desc">
+                  Lembretes locais no aparelho e notificações push.
+                </p>
+                <dl class="flow__facts">
+                  <div class="flow__fact">
+                    <dt>Backend</dt>
+                    <dd>
+                      O endpoint <code>POST /api/device-tokens</code> está
+                      implementado para receber o token do dispositivo.
+                    </dd>
+                  </div>
+                  <div class="flow__fact">
+                    <dt>App</dt>
+                    <dd>
+                      As notificações locais estão implementadas. No push, a
+                      permissão e a obtenção do token já existem, mas o token
+                      <strong>não é enviado</strong> ao backend — há um
+                      comentário pendente no código.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+
+              <!-- Home -->
+              <article class="card">
+                <div class="flow__head">
+                  <h3 class="flow__title">Home</h3>
+                  <span class="badge badge--pending">Pendente</span>
+                </div>
+                <p class="flow__desc">Tela inicial do aplicativo.</p>
+                <dl class="flow__facts">
+                  <div class="flow__fact">
+                    <dt>Backend</dt>
+                    <dd>Não há endpoint próprio para a home.</dd>
+                  </div>
+                  <div class="flow__fact">
+                    <dt>App</dt>
+                    <dd>
+                      A <code>HomeScreen</code> é um protótipo mínimo: mostra
+                      apenas o texto <code>Zelo App</code>. Além disso, o app
+                      inicia na tela de cadastro, e não na home.
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            </div>
+          </section>
+
+
+          <!-- Seção 6 -->
+          <section
+            class="section"
+            id="seguranca"
+            aria-labelledby="seguranca-titulo"
+          >
+            <span class="section__eyebrow">Seção 6</span>
+            <h2 class="section__title" id="seguranca-titulo">Segurança</h2>
+            <p class="section__lead">
+              O projeto adota cuidados explícitos para proteger o fluxo de
+              autenticação e os dados sensíveis. Os pontos abaixo foram
+              conferidos no código do backend.
+            </p>
+
+            <div class="grid grid--2">
+              <article class="card">
+                <h3 class="card__title">OTP cifrado em repouso</h3>
+                <p>
+                  O código OTP do fluxo é guardado cifrado com
+                  <strong>AES-256-GCM</strong> (<code>AES/GCM/NoPadding</code>).
+                  Cada operação usa um <strong>IV aleatório de 12 bytes</strong>
+                  e o id do fluxo entra como dado autenticado (AAD) — o que
+                  impede reaproveitar o texto cifrado em outro fluxo.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Telefone protegido por HMAC</h3>
+                <p>
+                  O telefone não é consultado em texto puro. O backend calcula
+                  um <strong>HMAC-SHA256</strong> com chave e usa esse valor nas
+                  buscas e nos limites por telefone.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Token do link guardado como hash</h3>
+                <p>
+                  O token entregue no link não é armazenado em claro. O backend
+                  guarda apenas o <strong>SHA-256</strong> dele e localiza o
+                  fluxo por esse hash.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Comparação em tempo constante</h3>
+                <p>
+                  As comparações de segredo usam
+                  <code>MessageDigest.isEqual</code>, que evita vazar
+                  informação pelo tempo de resposta da comparação.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Assinatura HMAC do webhook</h3>
+                <p>
+                  O webhook de envio de SMS é validado com
+                  <strong>HMAC-SHA256</strong> no formato
+                  <code>id.timestamp.corpo</code>. A verificação limita o
+                  tamanho do corpo e dos campos e exige uma janela de tempo de
+                  até <strong>5 minutos</strong>.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">Expiração e limites</h3>
+                <p>
+                  O link expira em um intervalo curto — entre
+                  <strong>60 e 300 segundos</strong>, validado na configuração.
+                  Há limite de <strong>tentativas</strong> por fluxo, de
+                  <strong>reenvios</strong>, de intervalo entre reenvios e de
+                  <strong>fluxos por telefone a cada hora</strong>.
+                </p>
+              </article>
+            </div>
+
+            <div class="callout">
+              <h3 class="callout__title">Token de acesso e rotas</h3>
+              <p>
+                O <strong>JWT</strong> é validado localmente com
+                <strong>ES256</strong> a partir do JWKS, e o emissor é
+                conferido. As rotas públicas são <strong>explícitas</strong>:
+                confirmação de usuário, fluxos de autenticação, login e o
+                webhook. Qualquer outra rota exige autenticação.
+              </p>
+            </div>
+
+            <p class="note">
+              <strong>Configuração validada.</strong> Os valores de expiração e
+              de limites têm faixas permitidas e são verificados na
+              inicialização — uma configuração fora da faixa impede a aplicação
+              de subir, em vez de gerar um comportamento inseguro silencioso.
+            </p>
+          </section>
+
+          <!-- Seção 7 -->
+          <section
+            class="section"
+            id="pendencias"
+            aria-labelledby="pendencias-titulo"
+          >
+            <span class="section__eyebrow">Seção 7</span>
+            <h2 class="section__title" id="pendencias-titulo">
+              Estado atual e pendências
+            </h2>
+            <p class="section__lead">
+              Um retrato do que já está pronto e do que ainda falta, olhando os
+              dois repositórios.
+            </p>
+
+            <p class="prose">
+              No <strong>backend</strong>, cadastro, autenticação por WhatsApp,
+              rede de apoio, periodicidade/horários e tokens de dispositivo
+              estão implementados. No <strong>aplicativo</strong>, o Design
+              System e as telas de cadastro e de rede de apoio estão montados,
+              mas a ligação com a API ainda não está ativa ponta a ponta.
+            </p>
+
+            <ul class="pending">
+              <li class="pending__item">
+                <span class="badge badge--pending">Pendente</span>
+                <div>
+                  <span class="pending__title">Enviar o token FCM ao backend</span>
+                  <p class="pending__desc">
+                    O app obtém o token, mas apenas o imprime no console. O
+                    endpoint <code>POST /api/device-tokens</code> já existe e
+                    está pronto para receber.
+                  </p>
+                </div>
+              </li>
+
+              <li class="pending__item">
+                <span class="badge badge--pending">Pendente</span>
+                <div>
+                  <span class="pending__title"
+                    >Usar a API real na rede de apoio</span
+                  >
+                  <p class="pending__desc">
+                    O app injeta <code>RedeApoioRepositoryFake</code>. É
+                    preciso trocar pelo repositório real e alinhar o caminho: o
+                    app usa <code>/api/v1/rede-apoio</code>, e o backend expõe
+                    <code>/api/rede-apoio</code>.
+                  </p>
+                </div>
+              </li>
+
+              <li class="pending__item">
+                <span class="badge badge--pending">Pendente</span>
+                <div>
+                  <span class="pending__title">Tela de login por WhatsApp</span>
+                  <p class="pending__desc">
+                    Os fluxos, o login e o webhook existem no backend; falta a
+                    tela correspondente no aplicativo.
+                  </p>
+                </div>
+              </li>
+
+              <li class="pending__item">
+                <span class="badge badge--pending">Pendente</span>
+                <div>
+                  <span class="pending__title"
+                    >Telas de periodicidade e horários</span
+                  >
+                  <p class="pending__desc">
+                    Os endpoints estão prontos; não há telas no aplicativo.
+                  </p>
+                </div>
+              </li>
+
+              <li class="pending__item">
+                <span class="badge badge--pending">Pendente</span>
+                <div>
+                  <span class="pending__title">Concluir a confirmação de conta</span>
+                  <p class="pending__desc">
+                    O app tem as telas de cadastro, mas o botão de confirmação
+                    por WhatsApp ainda depende de integração.
+                  </p>
+                </div>
+              </li>
+
+              <li class="pending__item">
+                <span class="badge badge--pending">Pendente</span>
+                <div>
+                  <span class="pending__title">Home</span>
+                  <p class="pending__desc">
+                    A <code>HomeScreen</code> é um protótipo e o app inicia na
+                    tela de cadastro, não na home.
+                  </p>
+                </div>
+              </li>
+
+              <li class="pending__item">
+                <span class="badge badge--unknown">A confirmar</span>
+                <div>
+                  <span class="pending__title">Atualizar e conferir os testes</span>
+                  <p class="pending__desc">
+                    <code>test/widget_test.dart</code> espera o texto
+                    <code>Olá</code>, mas a tela mostra <code>Zelo App</code>.
+                    Os números de testes citados na documentação de origem não
+                    foram localizados no repositório.
+                  </p>
+                </div>
+              </li>
+
+              <li class="pending__item">
+                <span class="badge badge--unknown">A confirmar</span>
+                <div>
+                  <span class="pending__title">Uso do Spring AI</span>
+                  <p class="pending__desc">
+                    Dependência declarada no <code>pom.xml</code> sem uso
+                    identificado no fluxo principal.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+
+          <!-- Seção 8 -->
+          <section class="section" id="setup" aria-labelledby="setup-titulo">
+            <span class="section__eyebrow">Seção 8</span>
+            <h2 class="section__title" id="setup-titulo">Setup rápido</h2>
+            <p class="section__lead">
+              O caminho mais curto para subir backend e aplicativo na sua
+              máquina. Os comandos abaixo refletem o que está nos repositórios
+              hoje.
+            </p>
+
+            <p class="prose">
+              Você precisa de <strong>Java 25</strong>, do
+              <strong>wrapper Maven</strong> (já incluído como
+              <code>mvnw</code>), do <strong>Flutter</strong> e do
+              <strong>Docker</strong>. O backend lê a configuração de um arquivo
+              <code>.env</code> na raiz; o aplicativo lê o endereço da API de
+              <code>lib/config/api_config.dart</code>.
+            </p>
+
+            <div class="grid grid--2">
+              <article class="card">
+                <h3 class="card__title">Backend — Spring Boot</h3>
+                <ol class="steps">
+                  <li>
+                    Suba o PostgreSQL do projeto (container
+                    <code>zelo_postgres</code>, banco <code>zelo</code>).
+                    <pre class="code-block"><code>docker compose up -d</code></pre>
+                  </li>
+                  <li>
+                    Crie um <code>.env</code> na raiz com as chaves exigidas na
+                    inicialização.
+                    <pre class="code-block"><code>AUTH_LINK_BASE_URL=https://...
+AUTH_TOKEN_ENCRYPTION_KEY=32 bytes em Base64
+SUPABASE_URL=https://SEU-PROJETO.supabase.co
+SUPABASE_ANON_KEY=...
+SUPABASE_WEBHOOK_SECRET=...
+FIREBASE_CREDENTIALS_PATH=./serviceAccount.json
+WAHA_BASE_URL=...
+WAHA_API_KEY=...</code></pre>
+                  </li>
+                  <li>
+                    Suba a aplicação.
+                    <pre
+                      class="code-block"
+                    ><code>./mvnw spring-boot:run</code></pre>
+                  </li>
+                  <li>
+                    Confira a documentação viva em
+                    <code>/swagger-ui/index.html</code>.
+                  </li>
+                </ol>
+              </article>
+
+              <article class="card">
+                <h3 class="card__title">App — Flutter</h3>
+                <ol class="steps">
+                  <li>
+                    Baixe as dependências.
+                    <pre class="code-block"><code>flutter pub get</code></pre>
+                  </li>
+                  <li>
+                    Rode a análise estática antes de executar.
+                    <pre class="code-block"><code>flutter analyze</code></pre>
+                  </li>
+                  <li>
+                    Execute no dispositivo ou emulador.
+                    <pre class="code-block"><code>flutter run</code></pre>
+                  </li>
+                  <li>
+                    Confira o endereço da API em <code>api_config.dart</code>:
+                    <code>10.0.2.2</code> é o host visto de dentro do emulador
+                    Android; <code>localhost</code> vale para desktop e iOS.
+                  </li>
+                </ol>
+              </article>
+            </div>
+
+            <div class="callout callout--warn">
+              <h3 class="callout__title">
+                Duas divergências para alinhar antes de rodar
+              </h3>
+              <p>
+                O <code>docker-compose.yml</code> publica o PostgreSQL na porta
+                <strong>5433</strong>, mas o <code>application.yaml</code> aponta
+                para <strong>5432</strong>. E o
+                <code>RedeApoioController</code> expõe
+                <code>/api/rede-apoio</code>, enquanto o README e o aplicativo
+                usam <code>/api/v1/rede-apoio</code>. Ajuste um dos lados antes
+                de testar a integração.
+              </p>
+            </div>
+
+            <p class="note">
+              <strong>Segredos fora do repositório.</strong> O
+              <code>.env</code> e o arquivo de credenciais do Firebase não devem
+              ser versionados. O <code>application.yaml</code> apenas referencia
+              as variáveis — nenhum valor sensível fica no código.
+            </p>
+          </section>
+        </main>
+
+        <footer class="page-footer">
+          Onboarding técnico do Zelo · Design System ZDS v1.0
+        </footer>
+      </div>
+    </div>
+
+    <!-- Véu do menu no layout compacto -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <script src="js/navigation.js" defer></script>
+  </body>
+</html>

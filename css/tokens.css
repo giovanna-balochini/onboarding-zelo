@@ -1,0 +1,157 @@
+/* ==========================================================================
+   ZDS v1.0 — Design tokens do Zelo
+   --------------------------------------------------------------------------
+   Fonte única de verdade dos valores visuais, espelhando
+   `lib/ui/design_system/tokens/*.dart` do app Flutter.
+   Componentes NÃO devem usar cores/medidas literais: leiam as variáveis.
+
+   As razões de contraste estão documentadas em
+   `zelo_design_system_verde.md` §3.1 (piso AAA = 7:1 para texto normal).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tipografia — Plus Jakarta Sans (SIL OFL 1.1), bundleada offline.
+   Os .ttf devem existir em `assets/fonts/`. O fallback do sistema evita
+   texto invisível caso o arquivo não esteja presente.
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/PlusJakartaSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/PlusJakartaSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/PlusJakartaSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/PlusJakartaSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ------------------------------------------------------------------------
+     Cores — famílias ZDS (zelo_colors.dart)
+     ------------------------------------------------------------------------ */
+
+  /* Primária — Verde Zelo */
+  --zelo-primary: #0f4c3a;
+  --zelo-on-primary: #ffffff;
+  --zelo-primary-container: #dcece6;
+  --zelo-on-primary-container: #0f4c3a;
+
+  /* Secundária — Terracota (USO EXCLUSIVO COMO ACENTO).
+     `secondary` mede 2.92:1 sobre o creme: NÃO usar como texto nem ícone
+     sobre superfície clara. Para texto terracota use
+     `--zelo-on-secondary-container` (#883017, AAA). */
+  --zelo-secondary: #e27355;
+  --zelo-secondary-container: #fbe6de;
+  --zelo-on-secondary-container: #883017;
+
+  /* Terciária — Verde acinzentado (acento de balanceamento) */
+  --zelo-tertiary: #365d50;
+  --zelo-tertiary-container: #d9e7e1;
+  --zelo-on-tertiary-container: #28483d;
+
+  /* Neutros e superfícies */
+  --zelo-background: #fdf8f2; /* Creme Acolher */
+  --zelo-on-background: #1c2421;
+  --zelo-surface: #ffffff;
+  --zelo-on-surface: #1c2421;
+  --zelo-surface-variant: #f1ede4;
+  --zelo-on-surface-variant: #424242;
+  --zelo-surface-container-low: #fcfaf6;
+  --zelo-surface-container: #f7f3ec;
+  --zelo-surface-container-high: #f1ede4;
+  --zelo-surface-container-highest: #ebe6dc;
+
+  /* Bordas */
+  --zelo-outline: #848484;
+  --zelo-outline-variant: #c9c4be;
+  --zelo-border-strong: #6f6f6f; /* foco e erro — 5.02:1 sobre surface */
+
+  /* Status (extensões ZDS) */
+  --zelo-success: #246127;
+  --zelo-success-container: #dcebdc;
+  --zelo-on-success-container: #1b4a1d;
+  --zelo-warning: #bb5502; /* AA (4.76:1) — alerta curto */
+  --zelo-warning-container: #fbead6;
+  --zelo-on-warning-container: #7a3a01;
+  --zelo-error: #a32323;
+  --zelo-error-container: #f7dcd8;
+  --zelo-on-error-container: #6e1717;
+
+  /* Sombra — Grafite Noite, nunca preto puro */
+  --zelo-shadow: #1c2421;
+
+  /* ------------------------------------------------------------------------
+     Espaçamento — base 4dp (zelo_spacing.dart)
+     ------------------------------------------------------------------------ */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-huge: 40px;
+  --space-giant: 48px;
+
+  /* ------------------------------------------------------------------------
+     Raios — escala discreta (zelo_radius.dart)
+     ------------------------------------------------------------------------ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* ------------------------------------------------------------------------
+     Elevação — sombra em duas camadas (zelo_elevation.dart)
+     ------------------------------------------------------------------------ */
+  --shadow-raised: 0 2px 4px rgba(28, 36, 33, 0.08),
+    0 0 2px rgba(28, 36, 33, 0.04);
+  --shadow-overlay: 0 24px 24px rgba(28, 36, 33, 0.08),
+    0 0 12px rgba(28, 36, 33, 0.04);
+
+  /* ------------------------------------------------------------------------
+     Alvos de toque (zelo_touch.dart)
+     ------------------------------------------------------------------------ */
+  --touch-min: 48px;
+  --touch-cta: 56px;
+
+  /* ------------------------------------------------------------------------
+     Tipografia — escala para leitura em tela (adaptada da escala M3 do app)
+     ------------------------------------------------------------------------ */
+  --font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+
+  --text-display: 2.5rem; /* 40px */
+  --text-h1: 2rem; /* 32px */
+  --text-h2: 1.5rem; /* 24px */
+  --text-h3: 1.25rem; /* 20px */
+  --text-title: 1.125rem; /* 18px */
+  --text-body: 1rem; /* 16px */
+  --text-small: 0.875rem; /* 14px */
+  --text-xs: 0.8125rem; /* 13px */
+
+  /* ------------------------------------------------------------------------
+     Layout do portal
+     ------------------------------------------------------------------------ */
+  --sidebar-width: 280px;
+  --content-max: 920px;
+}

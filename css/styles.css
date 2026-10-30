@@ -1,0 +1,1088 @@
+/* ==========================================================================
+   Zelo — Onboarding técnico
+   Layout base: shell com menu lateral + conteúdo navegável.
+   Depende de `tokens.css` (variáveis --zelo-* e --space-*).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Reset enxuto
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--zelo-on-background);
+  background-color: var(--zelo-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--zelo-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Acessibilidade — foco sempre visível (§WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--zelo-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Link de pulo para o conteúdo (primeiro elemento focável) */
+.skip-link {
+  position: absolute;
+  left: var(--space-lg);
+  top: calc(-1 * var(--space-giant));
+  z-index: 100;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--zelo-primary);
+  color: var(--zelo-on-primary);
+  border-radius: var(--radius-md);
+  transition: top 0.15s ease-in-out;
+}
+
+.skip-link:focus {
+  top: var(--space-lg);
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   Shell — menu lateral + área de conteúdo
+   -------------------------------------------------------------------------- */
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   Menu lateral
+   -------------------------------------------------------------------------- */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-2xl) var(--space-lg);
+  background-color: var(--zelo-primary);
+  color: var(--zelo-on-primary);
+  overflow-y: auto;
+  z-index: 40;
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0 var(--space-sm);
+}
+
+/* Marca visual do Zelo na navegação lateral. */
+.brand-mark {
+  display: block;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  padding: var(--space-sm);
+  box-sizing: border-box;
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-background);
+  border: 1px solid var(--zelo-outline-variant);
+  box-shadow: var(--shadow-raised);
+  object-fit: contain;
+}
+
+.sidebar__brand {
+  display: block;
+  font-size: var(--text-h3);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sidebar__subtitle {
+  display: block;
+  font-size: var(--text-small);
+  color: var(--zelo-primary-container);
+}
+
+.sidebar__nav {
+  flex: 1 1 auto;
+}
+
+.sidebar__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: var(--touch-min);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--zelo-primary-container);
+  font-size: var(--text-body);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Indicador de seção ativa (scroll-spy) */
+.nav-link::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 4px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background-color: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.nav-link[aria-current="true"] {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-link[aria-current="true"]::before {
+  background-color: var(--zelo-secondary);
+}
+
+.sidebar__footer {
+  padding: var(--space-sm);
+  font-size: var(--text-xs);
+  color: var(--zelo-primary-container);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+/* --------------------------------------------------------------------------
+   Conteúdo
+   -------------------------------------------------------------------------- */
+.content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Barra superior — só aparece no layout compacto */
+.topbar {
+  display: none;
+  align-items: center;
+  gap: var(--space-md);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--zelo-surface);
+  border-bottom: 1px solid var(--zelo-outline-variant);
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--touch-min);
+  padding: 0 var(--space-lg);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-full);
+  background-color: var(--zelo-surface);
+  font-weight: 600;
+}
+
+.topbar__title {
+  font-weight: 600;
+}
+
+/* Véu escuro atrás do menu no layout compacto */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background-color: rgba(28, 36, 33, 0.5);
+}
+
+main {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-2xl) var(--space-giant);
+}
+
+/* --------------------------------------------------------------------------
+   Seções
+   -------------------------------------------------------------------------- */
+.section {
+  padding: var(--space-huge) 0;
+  border-top: 1px solid var(--zelo-outline-variant);
+  /* Compensa a altura da topbar sticky ao navegar por âncora */
+  scroll-margin-top: var(--space-2xl);
+}
+
+.section__eyebrow {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--zelo-on-secondary-container);
+}
+
+.section__title {
+  font-size: var(--text-h2);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.section__lead {
+  max-width: 60ch;
+  margin-top: var(--space-md);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  padding: var(--space-giant) 0 var(--space-huge);
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  background-color: var(--zelo-primary-container);
+  color: var(--zelo-on-primary-container);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.hero__title {
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.hero__subtitle {
+  max-width: 62ch;
+  margin-top: var(--space-lg);
+  font-size: var(--text-title);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   Componentes de conteúdo — grades, cards, callout, notas e acordeão
+   -------------------------------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card {
+  padding: var(--space-2xl);
+  background-color: var(--zelo-surface);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-raised);
+}
+
+.card__title {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.card__count {
+  display: inline-block;
+  margin-left: var(--space-sm);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  background-color: var(--zelo-primary-container);
+  color: var(--zelo-on-primary-container);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.card__intro {
+  margin-top: var(--space-xs);
+  color: var(--zelo-on-surface-variant);
+  font-size: var(--text-small);
+}
+
+.card__list {
+  margin-top: var(--space-lg);
+}
+
+.card p + p {
+  margin-top: var(--space-sm);
+}
+
+/* Caixa de destaque */
+.callout {
+  margin-top: var(--space-2xl);
+  padding: var(--space-xl) var(--space-2xl);
+  border-left: 4px solid var(--zelo-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-primary-container);
+  color: var(--zelo-on-primary-container);
+}
+
+.callout__title {
+  font-size: var(--text-title);
+  font-weight: 700;
+}
+
+.callout p {
+  margin-top: var(--space-sm);
+}
+
+.callout--warn {
+  border-left-color: var(--zelo-warning);
+  background-color: var(--zelo-warning-container);
+  color: var(--zelo-on-warning-container);
+}
+
+/* Nota discreta */
+.note {
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-surface-container);
+  color: var(--zelo-on-surface-variant);
+  font-size: var(--text-small);
+}
+
+.note strong {
+  color: var(--zelo-on-surface);
+}
+
+/* Código inline */
+code {
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+  background-color: var(--zelo-surface-container-high);
+  color: var(--zelo-on-surface);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+
+/* Acordeão de tecnologia — usa <details> nativo (acessível por teclado) */
+.tech {
+  border-top: 1px solid var(--zelo-outline-variant);
+}
+
+.tech:first-child {
+  border-top: none;
+}
+
+.tech > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: var(--touch-min);
+  padding: var(--space-sm) 0;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+.tech > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Indicador de aberto/fechado desenhado em CSS */
+.tech > summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--zelo-primary);
+  border-bottom: 2px solid var(--zelo-primary);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.18s ease;
+}
+
+.tech[open] > summary::after {
+  transform: rotate(225deg) translateY(-2px);
+}
+
+.tech > p {
+  padding-bottom: var(--space-md);
+  color: var(--zelo-on-surface-variant);
+  font-size: var(--text-small);
+}
+
+/* Grades responsivas: 3 → 2 → 1 coluna */
+@media (max-width: 960px) {
+  .grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .grid--2,
+  .grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Parágrafo corrido dentro de uma seção */
+.prose {
+  max-width: 68ch;
+  margin-top: var(--space-lg);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* Subtítulo dentro de uma seção (usa a escala de título do card) */
+.subheading {
+  margin-top: var(--space-huge);
+}
+
+/* --------------------------------------------------------------------------
+   Diagrama de arquitetura
+   -------------------------------------------------------------------------- */
+.arch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  align-items: start;
+}
+
+.arch__panel {
+  padding: var(--space-xl);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-lg);
+  background-color: var(--zelo-surface-container-low);
+}
+
+.arch__heading {
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-title);
+  font-weight: 700;
+}
+
+.arch__note {
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-small);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* Fluxo principal: pilha de camadas com setas entre elas */
+.arch__flow {
+  display: flex;
+  flex-direction: column;
+}
+
+.arch-node {
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-surface);
+  text-align: center;
+}
+
+.arch-node__name {
+  display: block;
+  font-weight: 600;
+}
+
+.arch-node__desc {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--zelo-on-surface-variant);
+}
+
+.arch-node--start {
+  border-color: var(--zelo-primary);
+  background-color: var(--zelo-primary);
+  color: var(--zelo-on-primary);
+}
+
+.arch-node--start .arch-node__desc {
+  color: var(--zelo-primary-container);
+}
+
+.arch-node--db {
+  border-color: var(--zelo-tertiary);
+  background-color: var(--zelo-tertiary-container);
+  color: var(--zelo-on-tertiary-container);
+}
+
+/* Rótulo de transporte (HTTP/JSON), não é uma camada */
+.arch-pill {
+  align-self: center;
+  padding: 2px var(--space-md);
+  border: 1px dashed var(--zelo-outline);
+  border-radius: var(--radius-full);
+  background-color: var(--zelo-surface);
+  color: var(--zelo-on-surface-variant);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: var(--text-xs);
+}
+
+/* Seta para baixo desenhada em CSS */
+.arch__arrow {
+  display: grid;
+  place-items: center;
+  height: 20px;
+}
+
+.arch__arrow::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--zelo-outline);
+  border-bottom: 2px solid var(--zelo-outline);
+  transform: rotate(45deg);
+}
+
+/* Integrações externas — cada uma com seu ponto de conexão */
+.integration {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.integration__item {
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-surface);
+}
+
+.integration__name {
+  font-weight: 600;
+}
+
+.integration__route {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* Árvores de diretórios */
+.tree {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.tree__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--zelo-outline-variant);
+}
+
+.tree__item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.tree__path {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.tree__desc {
+  font-size: var(--text-small);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* Bloco de código / JSON */
+.code-block {
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-on-background);
+  color: var(--zelo-background);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.code-block code {
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+
+@media (max-width: 780px) {
+  .arch {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Selos de status
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge--ok {
+  background-color: var(--zelo-success-container);
+  color: var(--zelo-on-success-container);
+}
+
+.badge--partial {
+  background-color: var(--zelo-warning-container);
+  color: var(--zelo-on-warning-container);
+}
+
+.badge--pending {
+  background-color: var(--zelo-error-container);
+  color: var(--zelo-on-error-container);
+}
+
+.badge--legacy {
+  background-color: var(--zelo-surface-container-high);
+  color: var(--zelo-on-surface-variant);
+}
+
+.badge--unknown {
+  background-color: var(--zelo-tertiary-container);
+  color: var(--zelo-on-tertiary-container);
+}
+
+/* --------------------------------------------------------------------------
+   Amostras de cor
+   -------------------------------------------------------------------------- */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.swatch {
+  overflow: hidden;
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-lg);
+  background-color: var(--zelo-surface);
+}
+
+/* A cor é o dado desta seção; por isso a amostra usa a variável do token. */
+.swatch__color {
+  height: 88px;
+}
+
+.swatch__meta {
+  padding: var(--space-md) var(--space-lg);
+}
+
+.swatch__name {
+  font-weight: 600;
+}
+
+.swatch__hex {
+  display: block;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: var(--text-xs);
+  color: var(--zelo-on-surface-variant);
+}
+
+.swatch__role {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: var(--text-xs);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   Grupos de tokens
+   -------------------------------------------------------------------------- */
+.token-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.token-item {
+  padding: var(--space-lg);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-surface);
+}
+
+.token-item__title {
+  font-weight: 700;
+}
+
+.token-item__desc {
+  margin-top: var(--space-xs);
+  font-size: var(--text-small);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   Lista de componentes do Design System
+   -------------------------------------------------------------------------- */
+.component-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.component {
+  padding: var(--space-md) var(--space-lg);
+  border-left: 3px solid var(--zelo-primary);
+  border-radius: var(--radius-sm);
+  background-color: var(--zelo-surface-container);
+}
+
+.component__name {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.component__desc {
+  margin-top: 2px;
+  font-size: var(--text-small);
+  color: var(--zelo-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   Lista de regras
+   -------------------------------------------------------------------------- */
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-2xl);
+}
+
+.rules li {
+  position: relative;
+  padding-left: var(--space-2xl);
+  color: var(--zelo-on-surface-variant);
+}
+
+.rules li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: var(--zelo-secondary);
+}
+
+@media (max-width: 680px) {
+  .swatches,
+  .token-list,
+  .component-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Legenda de status
+   -------------------------------------------------------------------------- */
+.legend {
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: var(--space-2xl);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--zelo-on-surface-variant);
+  font-size: var(--text-small);
+}
+
+.legend .badge {
+  flex: 0 0 auto;
+  min-width: 132px;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Fluxos (funcionalidades)
+   -------------------------------------------------------------------------- */
+.flow-list {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.flow__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.flow__title {
+  font-size: var(--text-h3);
+  font-weight: 700;
+}
+
+.flow__desc {
+  margin-top: var(--space-sm);
+  color: var(--zelo-on-surface-variant);
+}
+
+.flow__facts {
+  display: grid;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.flow__fact {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.flow__fact dt {
+  padding-top: 2px;
+  color: var(--zelo-on-secondary-container);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flow__fact dd {
+  margin: 0;
+  color: var(--zelo-on-surface-variant);
+  font-size: var(--text-small);
+}
+
+@media (max-width: 560px) {
+  .flow__fact {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Lista de pendências
+   -------------------------------------------------------------------------- */
+.pending {
+  display: grid;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.pending__item {
+  display: grid;
+  grid-template-columns: 124px minmax(0, 1fr);
+  gap: var(--space-md);
+  align-items: start;
+  padding: var(--space-lg);
+  border: 1px solid var(--zelo-outline-variant);
+  border-radius: var(--radius-md);
+  background-color: var(--zelo-surface);
+}
+
+.pending__title {
+  font-weight: 700;
+}
+
+.pending__desc {
+  margin-top: 2px;
+  color: var(--zelo-on-surface-variant);
+  font-size: var(--text-small);
+}
+
+@media (max-width: 560px) {
+  .pending__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Setup rápido — passos numerados
+   -------------------------------------------------------------------------- */
+.steps {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+  padding: 0;
+  list-style: none;
+  counter-reset: passo;
+}
+
+.steps > li {
+  position: relative;
+  padding-left: var(--space-3xl);
+  counter-increment: passo;
+}
+
+/* Marcador numerado desenhado por CSS: mantém a sequência sem repetir
+   marcação no HTML e continua legível se a folha de estilo falhar. */
+.steps > li::before {
+  content: counter(passo);
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background-color: var(--zelo-primary-container);
+  color: var(--zelo-on-primary-container);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.steps .code-block {
+  margin-top: var(--space-md);
+}
+
+/* Rodapé */
+.page-footer {
+  padding: var(--space-2xl);
+  border-top: 1px solid var(--zelo-outline-variant);
+  color: var(--zelo-on-surface-variant);
+  font-size: var(--text-small);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Layout compacto — menu vira gaveta deslizante
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(320px, 86vw);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-in-out;
+  }
+
+  body.nav-open .sidebar {
+    transform: translateX(0);
+  }
+
+  body.nav-open .nav-overlay {
+    display: block;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  main {
+    padding: 0 var(--space-lg) var(--space-huge);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Preferências do usuário
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
